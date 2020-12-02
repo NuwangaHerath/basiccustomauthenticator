@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-SymbolicName: org.wso2.custom.authenticator.local
 Built-By: nuwanga
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1606708483112
+Bnd-LastModified: 1606881200471
 Embed-Dependency: grpc-core|grpc-netty-shaded|grpc-protobuf|protobuf-j
  ava|grpc-stub|opencensus-api|grpc-protobuf-lite|opencensus-contrib-gr
  pc-metrics|grpc-context
@@ -68,8 +68,8 @@ Export-Package: org.wso2.custom.authenticator.local.grpc;uses:="com.go
  tion.framework,org.wso2.carbon.utils.multitenancy,org.wso2.carbon.use
  r.core,org.wso2.carbon.user.core.tenant,org.wso2.carbon.identity.appl
  ication.authentication.framework.context,org.wso2.carbon.identity.app
- lication.authentication.framework.model,org.wso2.carbon.user.core.com
- mon,org.apache.commons.logging,org.wso2.carbon.identity.application.a
+ lication.authentication.framework.model,org.apache.commons.logging,or
+ g.wso2.carbon.user.core.common,org.wso2.carbon.identity.application.a
  uthentication.framework.util,org.wso2.carbon.identity.application.aut
  hentication.framework.config,org.wso2.carbon.user.api,org.wso2.custom
  .authenticator.local.grpc,org.wso2.carbon.user.core.service";version=

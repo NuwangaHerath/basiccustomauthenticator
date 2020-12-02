@@ -18,8 +18,8 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 /**
  */
 @javax.annotation.Generated(
-        value = "by gRPC proto compiler (version 1.15.0)",
-        comments = "Source: service.proto")
+    value = "by gRPC proto compiler (version 1.15.0)",
+    comments = "Source: service.proto")
 public final class serviceGrpc {
 
   private serviceGrpc() {}
@@ -27,36 +27,36 @@ public final class serviceGrpc {
   public static final String SERVICE_NAME = "service";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser,
-          org.wso2.custom.authenticator.local.grpc.Service.Response> getGetRoleNameMethod;
+  private static volatile io.grpc.MethodDescriptor<org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser,
+      org.wso2.custom.authenticator.local.grpc.Service.Response> getGetRoleNameMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-          fullMethodName = SERVICE_NAME + '/' + "getRoleName",
-          requestType = org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser.class,
-          responseType = org.wso2.custom.authenticator.local.grpc.Service.Response.class,
-          methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser,
-          org.wso2.custom.authenticator.local.grpc.Service.Response> getGetRoleNameMethod() {
-    io.grpc.MethodDescriptor<org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser, org.wso2.custom.authenticator.local.grpc.Service.Response> getGetRoleNameMethod;
+      fullMethodName = SERVICE_NAME + '/' + "getRoleName",
+      requestType = org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser.class,
+      responseType = org.wso2.custom.authenticator.local.grpc.Service.Response.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser,
+      org.wso2.custom.authenticator.local.grpc.Service.Response> getGetRoleNameMethod() {
+    io.grpc.MethodDescriptor<org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser, org.wso2.custom.authenticator.local.grpc.Service.Response> getGetRoleNameMethod;
     if ((getGetRoleNameMethod = serviceGrpc.getGetRoleNameMethod) == null) {
       synchronized (serviceGrpc.class) {
         if ((getGetRoleNameMethod = serviceGrpc.getGetRoleNameMethod) == null) {
-          serviceGrpc.getGetRoleNameMethod = getGetRoleNameMethod =
-                  io.grpc.MethodDescriptor.<org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser, org.wso2.custom.authenticator.local.grpc.Service.Response>newBuilder()
-                          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-                          .setFullMethodName(generateFullMethodName(
-                                  "service", "getRoleName"))
-                          .setSampledToLocalTracing(true)
-                          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                  org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser.getDefaultInstance()))
-                          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                  org.wso2.custom.authenticator.local.grpc.Service.Response.getDefaultInstance()))
-                          .setSchemaDescriptor(new serviceMethodDescriptorSupplier("getRoleName"))
-                          .build();
+          serviceGrpc.getGetRoleNameMethod = getGetRoleNameMethod = 
+              io.grpc.MethodDescriptor.<org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser, org.wso2.custom.authenticator.local.grpc.Service.Response>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "service", "getRoleName"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.wso2.custom.authenticator.local.grpc.Service.Response.getDefaultInstance()))
+                  .setSchemaDescriptor(new serviceMethodDescriptorSupplier("getRoleName"))
+                  .build();
+          }
         }
-      }
-    }
-    return getGetRoleNameMethod;
+     }
+     return getGetRoleNameMethod;
   }
 
   /**
@@ -70,7 +70,7 @@ public final class serviceGrpc {
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static serviceBlockingStub newBlockingStub(
-          io.grpc.Channel channel) {
+      io.grpc.Channel channel) {
     return new serviceBlockingStub(channel);
   }
 
@@ -78,7 +78,7 @@ public final class serviceGrpc {
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static serviceFutureStub newFutureStub(
-          io.grpc.Channel channel) {
+      io.grpc.Channel channel) {
     return new serviceFutureStub(channel);
   }
 
@@ -88,21 +88,21 @@ public final class serviceGrpc {
 
     /**
      */
-    public void getRoleName(org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser request,
-                            io.grpc.stub.StreamObserver<org.wso2.custom.authenticator.local.grpc.Service.Response> responseObserver) {
+    public void getRoleName(org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser request,
+        io.grpc.stub.StreamObserver<org.wso2.custom.authenticator.local.grpc.Service.Response> responseObserver) {
       asyncUnimplementedUnaryCall(getGetRoleNameMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-              .addMethod(
-                      getGetRoleNameMethod(),
-                      asyncUnaryCall(
-                              new MethodHandlers<
-                                      org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser,
-                                      org.wso2.custom.authenticator.local.grpc.Service.Response>(
-                                      this, METHODID_GET_ROLE_NAME)))
-              .build();
+          .addMethod(
+            getGetRoleNameMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser,
+                org.wso2.custom.authenticator.local.grpc.Service.Response>(
+                  this, METHODID_GET_ROLE_NAME)))
+          .build();
     }
   }
 
@@ -114,22 +114,22 @@ public final class serviceGrpc {
     }
 
     private serviceStub(io.grpc.Channel channel,
-                        io.grpc.CallOptions callOptions) {
+        io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
     protected serviceStub build(io.grpc.Channel channel,
-                                io.grpc.CallOptions callOptions) {
+        io.grpc.CallOptions callOptions) {
       return new serviceStub(channel, callOptions);
     }
 
     /**
      */
-    public void getRoleName(org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser request,
-                            io.grpc.stub.StreamObserver<org.wso2.custom.authenticator.local.grpc.Service.Response> responseObserver) {
+    public void getRoleName(org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser request,
+        io.grpc.stub.StreamObserver<org.wso2.custom.authenticator.local.grpc.Service.Response> responseObserver) {
       asyncUnaryCall(
-              getChannel().newCall(getGetRoleNameMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetRoleNameMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -141,21 +141,21 @@ public final class serviceGrpc {
     }
 
     private serviceBlockingStub(io.grpc.Channel channel,
-                                io.grpc.CallOptions callOptions) {
+        io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
     protected serviceBlockingStub build(io.grpc.Channel channel,
-                                        io.grpc.CallOptions callOptions) {
+        io.grpc.CallOptions callOptions) {
       return new serviceBlockingStub(channel, callOptions);
     }
 
     /**
      */
-    public org.wso2.custom.authenticator.local.grpc.Service.Response getRoleName(org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser request) {
+    public org.wso2.custom.authenticator.local.grpc.Service.Response getRoleName(org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser request) {
       return blockingUnaryCall(
-              getChannel(), getGetRoleNameMethod(), getCallOptions(), request);
+          getChannel(), getGetRoleNameMethod(), getCallOptions(), request);
     }
   }
 
@@ -167,32 +167,32 @@ public final class serviceGrpc {
     }
 
     private serviceFutureStub(io.grpc.Channel channel,
-                              io.grpc.CallOptions callOptions) {
+        io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
     protected serviceFutureStub build(io.grpc.Channel channel,
-                                      io.grpc.CallOptions callOptions) {
+        io.grpc.CallOptions callOptions) {
       return new serviceFutureStub(channel, callOptions);
     }
 
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<org.wso2.custom.authenticator.local.grpc.Service.Response> getRoleName(
-            org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser request) {
+        org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser request) {
       return futureUnaryCall(
-              getChannel().newCall(getGetRoleNameMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetRoleNameMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_GET_ROLE_NAME = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
-          io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
-          io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
-          io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
-          io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
+      io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
+      io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
+      io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
+      io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
     private final serviceImplBase serviceImpl;
     private final int methodId;
 
@@ -206,8 +206,8 @@ public final class serviceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_GET_ROLE_NAME:
-          serviceImpl.getRoleName((org.wso2.custom.authenticator.local.grpc.Service.AuthenticatedUser) request,
-                  (io.grpc.stub.StreamObserver<org.wso2.custom.authenticator.local.grpc.Service.Response>) responseObserver);
+          serviceImpl.getRoleName((org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass.AuthenticatedUser) request,
+              (io.grpc.stub.StreamObserver<org.wso2.custom.authenticator.local.grpc.Service.Response>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -217,7 +217,7 @@ public final class serviceGrpc {
     @java.lang.Override
     @java.lang.SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
-            io.grpc.stub.StreamObserver<Resp> responseObserver) {
+        io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         default:
           throw new AssertionError();
@@ -226,7 +226,7 @@ public final class serviceGrpc {
   }
 
   private static abstract class serviceBaseDescriptorSupplier
-          implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     serviceBaseDescriptorSupplier() {}
 
     @java.lang.Override
@@ -241,13 +241,13 @@ public final class serviceGrpc {
   }
 
   private static final class serviceFileDescriptorSupplier
-          extends serviceBaseDescriptorSupplier {
+      extends serviceBaseDescriptorSupplier {
     serviceFileDescriptorSupplier() {}
   }
 
   private static final class serviceMethodDescriptorSupplier
-          extends serviceBaseDescriptorSupplier
-          implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+      extends serviceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
     serviceMethodDescriptorSupplier(String methodName) {
@@ -269,9 +269,9 @@ public final class serviceGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-                  .setSchemaDescriptor(new serviceFileDescriptorSupplier())
-                  .addMethod(getGetRoleNameMethod())
-                  .build();
+              .setSchemaDescriptor(new serviceFileDescriptorSupplier())
+              .addMethod(getGetRoleNameMethod())
+              .build();
         }
       }
     }

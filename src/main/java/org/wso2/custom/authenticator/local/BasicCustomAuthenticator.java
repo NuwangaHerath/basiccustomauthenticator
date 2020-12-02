@@ -17,12 +17,16 @@
  */
 package org.wso2.custom.authenticator.local;
 
-
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.opensaml.xml.encryption.Public;
+import org.wso2.carbon.identity.application.common.model.Claim;
+import org.wso2.carbon.identity.application.common.model.ClaimMapping;
 import org.wso2.carbon.identity.application.common.model.User;
 import org.wso2.carbon.identity.core.util.IdentityUtil;
+import org.wso2.custom.authenticator.local.grpc.AuthenticatedUserOuterClass;
+import org.wso2.custom.authenticator.local.grpc.ClaimMappingOuterClass;
+import org.wso2.custom.authenticator.local.grpc.MapEntryOuterClass;
 import org.wso2.custom.authenticator.local.grpc.Service;
 import org.wso2.custom.authenticator.local.grpc.UserOuterClass;
 import org.wso2.custom.authenticator.local.grpc.serviceGrpc;
@@ -43,10 +47,17 @@ import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import io.grpc.ManagedChannel;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
+
 /**
  * Username Password based custom Authenticator
  */
@@ -55,7 +66,6 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
     private static final long serialVersionUID = 4345354156955223654L;
     private static final Log log = LogFactory.getLog(BasicCustomAuthenticator.class);
     private String roleName;
-
 
     @Override
     protected void initiateAuthenticationRequest(HttpServletRequest request,
@@ -102,7 +112,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
         boolean authorization = false;
 
-        if(isAuthenticated) {
+        if (isAuthenticated) {
             if ("oidc".equalsIgnoreCase(context.getRequestType())) {
                 // authorization only for openid connect requests
                 try {
@@ -136,6 +146,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     @Override
     protected boolean retryAuthenticationEnabled() {
+
         return true;
     }
 
@@ -147,6 +158,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     @Override
     public boolean canHandle(HttpServletRequest httpServletRequest) {
+
         String userName = httpServletRequest.getParameter(BasicCustomAuthenticatorConstants.USER_NAME);
         String password = httpServletRequest.getParameter(BasicCustomAuthenticatorConstants.PASSWORD);
         if (userName != null && password != null) {
@@ -157,6 +169,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     @Override
     public String getContextIdentifier(HttpServletRequest httpServletRequest) {
+
         return httpServletRequest.getParameter("sessionDataKey");
     }
 
@@ -168,11 +181,73 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     public String getRoleName(AuthenticatedUser user) {
 
+        //new Claim objects
+        Claim claim1 = new Claim();
+        Claim claim2 = new Claim();
+        Claim claim3 = new Claim();
+        claim1.setClaimId(1);
+        claim2.setClaimId(2);
+        claim3.setClaimId(3);
+        claim1.setClaimUri("Uri1");
+        claim2.setClaimUri("Uri2");
+        claim3.setClaimUri("Uri3");
+
+        //new ClaimMapping object
+        ClaimMapping cm1 = new ClaimMapping();
+        ClaimMapping cm2 = new ClaimMapping();
+        ClaimMapping cm3 = new ClaimMapping();
+        cm1.setRequested(true);
+        cm2.setRequested(true);
+        cm3.setRequested(true);
+        cm1.setDefaultValue("default1");
+        cm2.setDefaultValue("default2");
+        cm3.setDefaultValue("default3");
+        cm1.setLocalClaim(claim1);
+        cm2.setLocalClaim(claim2);
+        cm3.setLocalClaim(claim3);
+        cm1.setRemoteClaim(claim1);
+        cm2.setRemoteClaim(claim2);
+        cm3.setRemoteClaim(claim3);
+
+        //new map
+        Map<ClaimMapping, String> userAttributes = new HashMap<ClaimMapping, String>();
+        userAttributes.put(cm1, "claim1");
+        userAttributes.put(cm2, "claim2");
+        userAttributes.put(cm3, "claim3");
+
+        //set the fields of the authenticated user
+        user.setAuthenticatedSubjectIdentifier("authsubject");
+        user.setFederatedIdPName("federatedIDP");
+        user.setFederatedUser(false);
+        user.setUserAttributes(userAttributes);
+
+        //MapEntry object
+        MapEntryOuterClass.MapEntry mapEntry = new MapEntryOuterClass.MapEntry();
+
+        //List to add MapEntries
+        List<MapEntryOuterClass.MapEntry> mapEntries = new ArrayList<>();
+
+        for (Map.Entry<ClaimMapping, String> entry : userAttributes.entrySet()) {
+
+            ClaimMappingOuterClass.ClaimMapping claimMap = ClaimMappingOuterClass.ClaimMapping.newBuilder()
+                    .setDefaultValue(entry.getKey().getDefaultValue())
+                    .setRequested(entry.getKey().isRequested())
+                    .build();
+            mapEntry = MapEntryOuterClass.MapEntry.newBuilder().setKey(claimMap).setValue(entry.getValue()).build();
+            mapEntries.add(mapEntry);
+        }
+
         ManagedChannel channel = NettyChannelBuilder.forAddress("localhost", 8010).usePlaintext().build();
-        userGrpc.userBlockingStub clientstub = userGrpc.newBlockingStub(channel);
-        UserOuterClass.User grpcUser = UserOuterClass.User.newBuilder().setUserName(user.getUserName()).setUserStoreDomain(user.getUserStoreDomain()).setTenantDomain(user.getTenantDomain()).build();
-        UserOuterClass.Response response = clientstub.getRoleName(grpcUser);
-        System.out.println(response.getRole());
-        return response.getRole();
+        serviceGrpc.serviceBlockingStub clientStub = serviceGrpc.newBlockingStub(channel);
+        AuthenticatedUserOuterClass.AuthenticatedUser authUser = AuthenticatedUserOuterClass.AuthenticatedUser.newBuilder()
+                .setAuthenticatedSubjectIdentifier(user.getAuthenticatedSubjectIdentifier())
+                .setFederatedIdPName(user.getFederatedIdPName())
+                .setIsFederatedUser(user.isFederatedUser())
+                .addAllUserAttributes(mapEntries).build();
+
+        Service.Response response = clientStub.getRoleName(authUser);
+        System.out.println(response.getResponsemessage());
+        return response.getResponsemessage();
+
     }
 }
