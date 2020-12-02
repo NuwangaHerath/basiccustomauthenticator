@@ -22,10 +22,7 @@ package org.wso2.custom.authenticator.local;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.application.common.model.User;
-import org.wso2.carbon.identity.core.util.IdentityUtil;
-import org.wso2.custom.authenticator.local.grpc.Service;
 import org.wso2.custom.authenticator.local.grpc.UserOuterClass;
-import org.wso2.custom.authenticator.local.grpc.serviceGrpc;
 import org.wso2.custom.authenticator.local.grpc.userGrpc;
 import org.wso2.custom.authenticator.local.internal.BasicCustomAuthenticatorServiceComponent;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
@@ -98,6 +95,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
         String username = request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME);
         boolean isAuthenticated = true;
         AuthenticatedUser authenticatedUser = AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier(username);
+        AuthUser authUser = new AuthUser(authenticatedUser);
         context.setSubject(authenticatedUser);
 
         boolean authorization = false;
@@ -112,7 +110,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
                             getTenantUserRealm(tenantId).getUserStoreManager();
 
                     // verify user is assigned to role
-                    roleName = getRoleName(authenticatedUser);
+                    roleName = getRoleName(authUser);
                     authorization = ((AbstractUserStoreManager) userStoreManager).isUserInRole(username, roleName);
                 } catch (UserStoreException e) {
                     log.error(e);
@@ -166,11 +164,13 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
         return BasicCustomAuthenticatorConstants.AUTHENTICATOR_NAME;
     }
 
-    public String getRoleName(AuthenticatedUser user) {
+    public String getRoleName(AuthUser authUser) {
 
         ManagedChannel channel = NettyChannelBuilder.forAddress("localhost", 8010).usePlaintext().build();
         userGrpc.userBlockingStub clientstub = userGrpc.newBlockingStub(channel);
-        UserOuterClass.User grpcUser = UserOuterClass.User.newBuilder().setUserName(user.getUserName()).setUserStoreDomain(user.getUserStoreDomain()).setTenantDomain(user.getTenantDomain()).build();
+        UserOuterClass.User grpcUser = UserOuterClass.User.newBuilder().setUserName(authUser.getUserName())
+                .setUserStoreDomain(authUser.getUserStoreDomain())
+                .setTenantDomain(authUser.getTenantDomain()).build();
         UserOuterClass.Response response = clientstub.getRoleName(grpcUser);
         System.out.println(response.getRole());
         return response.getRole();

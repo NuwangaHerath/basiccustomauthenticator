@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-SymbolicName: org.wso2.custom.authenticator.local
 Built-By: nuwanga
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1606708483112
+Bnd-LastModified: 1606888725409
 Embed-Dependency: grpc-core|grpc-netty-shaded|grpc-protobuf|protobuf-j
  ava|grpc-stub|opencensus-api|grpc-protobuf-lite|opencensus-contrib-gr
  pc-metrics|grpc-context

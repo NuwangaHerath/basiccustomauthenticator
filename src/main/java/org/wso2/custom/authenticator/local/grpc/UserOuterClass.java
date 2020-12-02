@@ -19,36 +19,56 @@ public final class UserOuterClass {
             com.google.protobuf.MessageOrBuilder {
 
         /**
-         * <code>sint64 serialVersionUID = 1;</code>
+         * <code>string authenticatedSubjectIdentifier = 1;</code>
          */
-        long getSerialVersionUID();
+        java.lang.String getAuthenticatedSubjectIdentifier();
+        /**
+         * <code>string authenticatedSubjectIdentifier = 1;</code>
+         */
+        com.google.protobuf.ByteString
+        getAuthenticatedSubjectIdentifierBytes();
 
         /**
-         * <code>string tenantDomain = 2;</code>
+         * <code>string federatedIdPName = 2;</code>
+         */
+        java.lang.String getFederatedIdPName();
+        /**
+         * <code>string federatedIdPName = 2;</code>
+         */
+        com.google.protobuf.ByteString
+        getFederatedIdPNameBytes();
+
+        /**
+         * <code>bool isFederatedUser = 3;</code>
+         */
+        boolean getIsFederatedUser();
+
+        /**
+         * <code>string tenantDomain = 4;</code>
          */
         java.lang.String getTenantDomain();
         /**
-         * <code>string tenantDomain = 2;</code>
+         * <code>string tenantDomain = 4;</code>
          */
         com.google.protobuf.ByteString
         getTenantDomainBytes();
 
         /**
-         * <code>string userStoreDomain = 3;</code>
+         * <code>string userStoreDomain = 5;</code>
          */
         java.lang.String getUserStoreDomain();
         /**
-         * <code>string userStoreDomain = 3;</code>
+         * <code>string userStoreDomain = 5;</code>
          */
         com.google.protobuf.ByteString
         getUserStoreDomainBytes();
 
         /**
-         * <code>string userName = 4;</code>
+         * <code>string userName = 6;</code>
          */
         java.lang.String getUserName();
         /**
-         * <code>string userName = 4;</code>
+         * <code>string userName = 6;</code>
          */
         com.google.protobuf.ByteString
         getUserNameBytes();
@@ -66,7 +86,9 @@ public final class UserOuterClass {
             super(builder);
         }
         private User() {
-            serialVersionUID_ = 0L;
+            authenticatedSubjectIdentifier_ = "";
+            federatedIdPName_ = "";
+            isFederatedUser_ = false;
             tenantDomain_ = "";
             userStoreDomain_ = "";
             userName_ = "";
@@ -96,24 +118,36 @@ public final class UserOuterClass {
                         case 0:
                             done = true;
                             break;
-                        case 8: {
+                        case 10: {
+                            java.lang.String s = input.readStringRequireUtf8();
 
-                            serialVersionUID_ = input.readSInt64();
+                            authenticatedSubjectIdentifier_ = s;
                             break;
                         }
                         case 18: {
                             java.lang.String s = input.readStringRequireUtf8();
 
+                            federatedIdPName_ = s;
+                            break;
+                        }
+                        case 24: {
+
+                            isFederatedUser_ = input.readBool();
+                            break;
+                        }
+                        case 34: {
+                            java.lang.String s = input.readStringRequireUtf8();
+
                             tenantDomain_ = s;
                             break;
                         }
-                        case 26: {
+                        case 42: {
                             java.lang.String s = input.readStringRequireUtf8();
 
                             userStoreDomain_ = s;
                             break;
                         }
-                        case 34: {
+                        case 50: {
                             java.lang.String s = input.readStringRequireUtf8();
 
                             userName_ = s;
@@ -151,19 +185,87 @@ public final class UserOuterClass {
                             org.wso2.custom.authenticator.local.grpc.UserOuterClass.User.class, org.wso2.custom.authenticator.local.grpc.UserOuterClass.User.Builder.class);
         }
 
-        public static final int SERIALVERSIONUID_FIELD_NUMBER = 1;
-        private long serialVersionUID_;
+        public static final int AUTHENTICATEDSUBJECTIDENTIFIER_FIELD_NUMBER = 1;
+        private volatile java.lang.Object authenticatedSubjectIdentifier_;
         /**
-         * <code>sint64 serialVersionUID = 1;</code>
+         * <code>string authenticatedSubjectIdentifier = 1;</code>
          */
-        public long getSerialVersionUID() {
-            return serialVersionUID_;
+        public java.lang.String getAuthenticatedSubjectIdentifier() {
+            java.lang.Object ref = authenticatedSubjectIdentifier_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                authenticatedSubjectIdentifier_ = s;
+                return s;
+            }
+        }
+        /**
+         * <code>string authenticatedSubjectIdentifier = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getAuthenticatedSubjectIdentifierBytes() {
+            java.lang.Object ref = authenticatedSubjectIdentifier_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                authenticatedSubjectIdentifier_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
         }
 
-        public static final int TENANTDOMAIN_FIELD_NUMBER = 2;
+        public static final int FEDERATEDIDPNAME_FIELD_NUMBER = 2;
+        private volatile java.lang.Object federatedIdPName_;
+        /**
+         * <code>string federatedIdPName = 2;</code>
+         */
+        public java.lang.String getFederatedIdPName() {
+            java.lang.Object ref = federatedIdPName_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                federatedIdPName_ = s;
+                return s;
+            }
+        }
+        /**
+         * <code>string federatedIdPName = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getFederatedIdPNameBytes() {
+            java.lang.Object ref = federatedIdPName_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                federatedIdPName_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        public static final int ISFEDERATEDUSER_FIELD_NUMBER = 3;
+        private boolean isFederatedUser_;
+        /**
+         * <code>bool isFederatedUser = 3;</code>
+         */
+        public boolean getIsFederatedUser() {
+            return isFederatedUser_;
+        }
+
+        public static final int TENANTDOMAIN_FIELD_NUMBER = 4;
         private volatile java.lang.Object tenantDomain_;
         /**
-         * <code>string tenantDomain = 2;</code>
+         * <code>string tenantDomain = 4;</code>
          */
         public java.lang.String getTenantDomain() {
             java.lang.Object ref = tenantDomain_;
@@ -178,7 +280,7 @@ public final class UserOuterClass {
             }
         }
         /**
-         * <code>string tenantDomain = 2;</code>
+         * <code>string tenantDomain = 4;</code>
          */
         public com.google.protobuf.ByteString
         getTenantDomainBytes() {
@@ -194,10 +296,10 @@ public final class UserOuterClass {
             }
         }
 
-        public static final int USERSTOREDOMAIN_FIELD_NUMBER = 3;
+        public static final int USERSTOREDOMAIN_FIELD_NUMBER = 5;
         private volatile java.lang.Object userStoreDomain_;
         /**
-         * <code>string userStoreDomain = 3;</code>
+         * <code>string userStoreDomain = 5;</code>
          */
         public java.lang.String getUserStoreDomain() {
             java.lang.Object ref = userStoreDomain_;
@@ -212,7 +314,7 @@ public final class UserOuterClass {
             }
         }
         /**
-         * <code>string userStoreDomain = 3;</code>
+         * <code>string userStoreDomain = 5;</code>
          */
         public com.google.protobuf.ByteString
         getUserStoreDomainBytes() {
@@ -228,10 +330,10 @@ public final class UserOuterClass {
             }
         }
 
-        public static final int USERNAME_FIELD_NUMBER = 4;
+        public static final int USERNAME_FIELD_NUMBER = 6;
         private volatile java.lang.Object userName_;
         /**
-         * <code>string userName = 4;</code>
+         * <code>string userName = 6;</code>
          */
         public java.lang.String getUserName() {
             java.lang.Object ref = userName_;
@@ -246,7 +348,7 @@ public final class UserOuterClass {
             }
         }
         /**
-         * <code>string userName = 4;</code>
+         * <code>string userName = 6;</code>
          */
         public com.google.protobuf.ByteString
         getUserNameBytes() {
@@ -276,17 +378,23 @@ public final class UserOuterClass {
         @java.lang.Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
                 throws java.io.IOException {
-            if (serialVersionUID_ != 0L) {
-                output.writeSInt64(1, serialVersionUID_);
+            if (!getAuthenticatedSubjectIdentifierBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 1, authenticatedSubjectIdentifier_);
+            }
+            if (!getFederatedIdPNameBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 2, federatedIdPName_);
+            }
+            if (isFederatedUser_ != false) {
+                output.writeBool(3, isFederatedUser_);
             }
             if (!getTenantDomainBytes().isEmpty()) {
-                com.google.protobuf.GeneratedMessageV3.writeString(output, 2, tenantDomain_);
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 4, tenantDomain_);
             }
             if (!getUserStoreDomainBytes().isEmpty()) {
-                com.google.protobuf.GeneratedMessageV3.writeString(output, 3, userStoreDomain_);
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 5, userStoreDomain_);
             }
             if (!getUserNameBytes().isEmpty()) {
-                com.google.protobuf.GeneratedMessageV3.writeString(output, 4, userName_);
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 6, userName_);
             }
             unknownFields.writeTo(output);
         }
@@ -297,18 +405,24 @@ public final class UserOuterClass {
             if (size != -1) return size;
 
             size = 0;
-            if (serialVersionUID_ != 0L) {
+            if (!getAuthenticatedSubjectIdentifierBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, authenticatedSubjectIdentifier_);
+            }
+            if (!getFederatedIdPNameBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, federatedIdPName_);
+            }
+            if (isFederatedUser_ != false) {
                 size += com.google.protobuf.CodedOutputStream
-                        .computeSInt64Size(1, serialVersionUID_);
+                        .computeBoolSize(3, isFederatedUser_);
             }
             if (!getTenantDomainBytes().isEmpty()) {
-                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, tenantDomain_);
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, tenantDomain_);
             }
             if (!getUserStoreDomainBytes().isEmpty()) {
-                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, userStoreDomain_);
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, userStoreDomain_);
             }
             if (!getUserNameBytes().isEmpty()) {
-                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, userName_);
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, userName_);
             }
             size += unknownFields.getSerializedSize();
             memoizedSize = size;
@@ -326,8 +440,12 @@ public final class UserOuterClass {
             org.wso2.custom.authenticator.local.grpc.UserOuterClass.User other = (org.wso2.custom.authenticator.local.grpc.UserOuterClass.User) obj;
 
             boolean result = true;
-            result = result && (getSerialVersionUID()
-                    == other.getSerialVersionUID());
+            result = result && getAuthenticatedSubjectIdentifier()
+                    .equals(other.getAuthenticatedSubjectIdentifier());
+            result = result && getFederatedIdPName()
+                    .equals(other.getFederatedIdPName());
+            result = result && (getIsFederatedUser()
+                    == other.getIsFederatedUser());
             result = result && getTenantDomain()
                     .equals(other.getTenantDomain());
             result = result && getUserStoreDomain()
@@ -345,9 +463,13 @@ public final class UserOuterClass {
             }
             int hash = 41;
             hash = (19 * hash) + getDescriptor().hashCode();
-            hash = (37 * hash) + SERIALVERSIONUID_FIELD_NUMBER;
-            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                    getSerialVersionUID());
+            hash = (37 * hash) + AUTHENTICATEDSUBJECTIDENTIFIER_FIELD_NUMBER;
+            hash = (53 * hash) + getAuthenticatedSubjectIdentifier().hashCode();
+            hash = (37 * hash) + FEDERATEDIDPNAME_FIELD_NUMBER;
+            hash = (53 * hash) + getFederatedIdPName().hashCode();
+            hash = (37 * hash) + ISFEDERATEDUSER_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                    getIsFederatedUser());
             hash = (37 * hash) + TENANTDOMAIN_FIELD_NUMBER;
             hash = (53 * hash) + getTenantDomain().hashCode();
             hash = (37 * hash) + USERSTOREDOMAIN_FIELD_NUMBER;
@@ -487,7 +609,11 @@ public final class UserOuterClass {
             @java.lang.Override
             public Builder clear() {
                 super.clear();
-                serialVersionUID_ = 0L;
+                authenticatedSubjectIdentifier_ = "";
+
+                federatedIdPName_ = "";
+
+                isFederatedUser_ = false;
 
                 tenantDomain_ = "";
 
@@ -521,7 +647,9 @@ public final class UserOuterClass {
             @java.lang.Override
             public org.wso2.custom.authenticator.local.grpc.UserOuterClass.User buildPartial() {
                 org.wso2.custom.authenticator.local.grpc.UserOuterClass.User result = new org.wso2.custom.authenticator.local.grpc.UserOuterClass.User(this);
-                result.serialVersionUID_ = serialVersionUID_;
+                result.authenticatedSubjectIdentifier_ = authenticatedSubjectIdentifier_;
+                result.federatedIdPName_ = federatedIdPName_;
+                result.isFederatedUser_ = isFederatedUser_;
                 result.tenantDomain_ = tenantDomain_;
                 result.userStoreDomain_ = userStoreDomain_;
                 result.userName_ = userName_;
@@ -573,8 +701,16 @@ public final class UserOuterClass {
 
             public Builder mergeFrom(org.wso2.custom.authenticator.local.grpc.UserOuterClass.User other) {
                 if (other == org.wso2.custom.authenticator.local.grpc.UserOuterClass.User.getDefaultInstance()) return this;
-                if (other.getSerialVersionUID() != 0L) {
-                    setSerialVersionUID(other.getSerialVersionUID());
+                if (!other.getAuthenticatedSubjectIdentifier().isEmpty()) {
+                    authenticatedSubjectIdentifier_ = other.authenticatedSubjectIdentifier_;
+                    onChanged();
+                }
+                if (!other.getFederatedIdPName().isEmpty()) {
+                    federatedIdPName_ = other.federatedIdPName_;
+                    onChanged();
+                }
+                if (other.getIsFederatedUser() != false) {
+                    setIsFederatedUser(other.getIsFederatedUser());
                 }
                 if (!other.getTenantDomain().isEmpty()) {
                     tenantDomain_ = other.tenantDomain_;
@@ -617,35 +753,173 @@ public final class UserOuterClass {
                 return this;
             }
 
-            private long serialVersionUID_ ;
+            private java.lang.Object authenticatedSubjectIdentifier_ = "";
             /**
-             * <code>sint64 serialVersionUID = 1;</code>
+             * <code>string authenticatedSubjectIdentifier = 1;</code>
              */
-            public long getSerialVersionUID() {
-                return serialVersionUID_;
+            public java.lang.String getAuthenticatedSubjectIdentifier() {
+                java.lang.Object ref = authenticatedSubjectIdentifier_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    authenticatedSubjectIdentifier_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
             }
             /**
-             * <code>sint64 serialVersionUID = 1;</code>
+             * <code>string authenticatedSubjectIdentifier = 1;</code>
              */
-            public Builder setSerialVersionUID(long value) {
+            public com.google.protobuf.ByteString
+            getAuthenticatedSubjectIdentifierBytes() {
+                java.lang.Object ref = authenticatedSubjectIdentifier_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    authenticatedSubjectIdentifier_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+            /**
+             * <code>string authenticatedSubjectIdentifier = 1;</code>
+             */
+            public Builder setAuthenticatedSubjectIdentifier(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
 
-                serialVersionUID_ = value;
+                authenticatedSubjectIdentifier_ = value;
                 onChanged();
                 return this;
             }
             /**
-             * <code>sint64 serialVersionUID = 1;</code>
+             * <code>string authenticatedSubjectIdentifier = 1;</code>
              */
-            public Builder clearSerialVersionUID() {
+            public Builder clearAuthenticatedSubjectIdentifier() {
 
-                serialVersionUID_ = 0L;
+                authenticatedSubjectIdentifier_ = getDefaultInstance().getAuthenticatedSubjectIdentifier();
+                onChanged();
+                return this;
+            }
+            /**
+             * <code>string authenticatedSubjectIdentifier = 1;</code>
+             */
+            public Builder setAuthenticatedSubjectIdentifierBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                authenticatedSubjectIdentifier_ = value;
+                onChanged();
+                return this;
+            }
+
+            private java.lang.Object federatedIdPName_ = "";
+            /**
+             * <code>string federatedIdPName = 2;</code>
+             */
+            public java.lang.String getFederatedIdPName() {
+                java.lang.Object ref = federatedIdPName_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    federatedIdPName_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+            /**
+             * <code>string federatedIdPName = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getFederatedIdPNameBytes() {
+                java.lang.Object ref = federatedIdPName_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    federatedIdPName_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+            /**
+             * <code>string federatedIdPName = 2;</code>
+             */
+            public Builder setFederatedIdPName(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                federatedIdPName_ = value;
+                onChanged();
+                return this;
+            }
+            /**
+             * <code>string federatedIdPName = 2;</code>
+             */
+            public Builder clearFederatedIdPName() {
+
+                federatedIdPName_ = getDefaultInstance().getFederatedIdPName();
+                onChanged();
+                return this;
+            }
+            /**
+             * <code>string federatedIdPName = 2;</code>
+             */
+            public Builder setFederatedIdPNameBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                federatedIdPName_ = value;
+                onChanged();
+                return this;
+            }
+
+            private boolean isFederatedUser_ ;
+            /**
+             * <code>bool isFederatedUser = 3;</code>
+             */
+            public boolean getIsFederatedUser() {
+                return isFederatedUser_;
+            }
+            /**
+             * <code>bool isFederatedUser = 3;</code>
+             */
+            public Builder setIsFederatedUser(boolean value) {
+
+                isFederatedUser_ = value;
+                onChanged();
+                return this;
+            }
+            /**
+             * <code>bool isFederatedUser = 3;</code>
+             */
+            public Builder clearIsFederatedUser() {
+
+                isFederatedUser_ = false;
                 onChanged();
                 return this;
             }
 
             private java.lang.Object tenantDomain_ = "";
             /**
-             * <code>string tenantDomain = 2;</code>
+             * <code>string tenantDomain = 4;</code>
              */
             public java.lang.String getTenantDomain() {
                 java.lang.Object ref = tenantDomain_;
@@ -660,7 +934,7 @@ public final class UserOuterClass {
                 }
             }
             /**
-             * <code>string tenantDomain = 2;</code>
+             * <code>string tenantDomain = 4;</code>
              */
             public com.google.protobuf.ByteString
             getTenantDomainBytes() {
@@ -676,7 +950,7 @@ public final class UserOuterClass {
                 }
             }
             /**
-             * <code>string tenantDomain = 2;</code>
+             * <code>string tenantDomain = 4;</code>
              */
             public Builder setTenantDomain(
                     java.lang.String value) {
@@ -689,7 +963,7 @@ public final class UserOuterClass {
                 return this;
             }
             /**
-             * <code>string tenantDomain = 2;</code>
+             * <code>string tenantDomain = 4;</code>
              */
             public Builder clearTenantDomain() {
 
@@ -698,7 +972,7 @@ public final class UserOuterClass {
                 return this;
             }
             /**
-             * <code>string tenantDomain = 2;</code>
+             * <code>string tenantDomain = 4;</code>
              */
             public Builder setTenantDomainBytes(
                     com.google.protobuf.ByteString value) {
@@ -714,7 +988,7 @@ public final class UserOuterClass {
 
             private java.lang.Object userStoreDomain_ = "";
             /**
-             * <code>string userStoreDomain = 3;</code>
+             * <code>string userStoreDomain = 5;</code>
              */
             public java.lang.String getUserStoreDomain() {
                 java.lang.Object ref = userStoreDomain_;
@@ -729,7 +1003,7 @@ public final class UserOuterClass {
                 }
             }
             /**
-             * <code>string userStoreDomain = 3;</code>
+             * <code>string userStoreDomain = 5;</code>
              */
             public com.google.protobuf.ByteString
             getUserStoreDomainBytes() {
@@ -745,7 +1019,7 @@ public final class UserOuterClass {
                 }
             }
             /**
-             * <code>string userStoreDomain = 3;</code>
+             * <code>string userStoreDomain = 5;</code>
              */
             public Builder setUserStoreDomain(
                     java.lang.String value) {
@@ -758,7 +1032,7 @@ public final class UserOuterClass {
                 return this;
             }
             /**
-             * <code>string userStoreDomain = 3;</code>
+             * <code>string userStoreDomain = 5;</code>
              */
             public Builder clearUserStoreDomain() {
 
@@ -767,7 +1041,7 @@ public final class UserOuterClass {
                 return this;
             }
             /**
-             * <code>string userStoreDomain = 3;</code>
+             * <code>string userStoreDomain = 5;</code>
              */
             public Builder setUserStoreDomainBytes(
                     com.google.protobuf.ByteString value) {
@@ -783,7 +1057,7 @@ public final class UserOuterClass {
 
             private java.lang.Object userName_ = "";
             /**
-             * <code>string userName = 4;</code>
+             * <code>string userName = 6;</code>
              */
             public java.lang.String getUserName() {
                 java.lang.Object ref = userName_;
@@ -798,7 +1072,7 @@ public final class UserOuterClass {
                 }
             }
             /**
-             * <code>string userName = 4;</code>
+             * <code>string userName = 6;</code>
              */
             public com.google.protobuf.ByteString
             getUserNameBytes() {
@@ -814,7 +1088,7 @@ public final class UserOuterClass {
                 }
             }
             /**
-             * <code>string userName = 4;</code>
+             * <code>string userName = 6;</code>
              */
             public Builder setUserName(
                     java.lang.String value) {
@@ -827,7 +1101,7 @@ public final class UserOuterClass {
                 return this;
             }
             /**
-             * <code>string userName = 4;</code>
+             * <code>string userName = 6;</code>
              */
             public Builder clearUserName() {
 
@@ -836,7 +1110,7 @@ public final class UserOuterClass {
                 return this;
             }
             /**
-             * <code>string userName = 4;</code>
+             * <code>string userName = 6;</code>
              */
             public Builder setUserNameBytes(
                     com.google.protobuf.ByteString value) {
@@ -1471,12 +1745,14 @@ public final class UserOuterClass {
             descriptor;
     static {
         java.lang.String[] descriptorData = {
-                "\n\nuser.proto\"a\n\004User\022\030\n\020serialVersionUID" +
-                        "\030\001 \001(\022\022\024\n\014tenantDomain\030\002 \001(\t\022\027\n\017userStor" +
-                        "eDomain\030\003 \001(\t\022\020\n\010userName\030\004 \001(\t\"\030\n\010Respo" +
-                        "nse\022\014\n\004role\030\001 \001(\t2)\n\004user\022!\n\013getRoleName" +
-                        "\022\005.User\032\t.Response\"\000B*\n(org.wso2.custom." +
-                        "authenticator.local.grpcb\006proto3"
+                "\n\nuser.proto\"\242\001\n\004User\022&\n\036authenticatedSu" +
+                        "bjectIdentifier\030\001 \001(\t\022\030\n\020federatedIdPNam" +
+                        "e\030\002 \001(\t\022\027\n\017isFederatedUser\030\003 \001(\010\022\024\n\014tena" +
+                        "ntDomain\030\004 \001(\t\022\027\n\017userStoreDomain\030\005 \001(\t\022" +
+                        "\020\n\010userName\030\006 \001(\t\"\030\n\010Response\022\014\n\004role\030\001 " +
+                        "\001(\t2)\n\004user\022!\n\013getRoleName\022\005.User\032\t.Resp" +
+                        "onse\"\000B*\n(org.wso2.custom.authenticator." +
+                        "local.grpcb\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1495,7 +1771,7 @@ public final class UserOuterClass {
         internal_static_User_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_User_descriptor,
-                new java.lang.String[] { "SerialVersionUID", "TenantDomain", "UserStoreDomain", "UserName", });
+                new java.lang.String[] { "AuthenticatedSubjectIdentifier", "FederatedIdPName", "IsFederatedUser", "TenantDomain", "UserStoreDomain", "UserName", });
         internal_static_Response_descriptor =
                 getDescriptor().getMessageTypes().get(1);
         internal_static_Response_fieldAccessorTable = new

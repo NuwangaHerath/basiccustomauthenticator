@@ -278,4 +278,3 @@ public final class userGrpc {
         return result;
     }
 }
-
