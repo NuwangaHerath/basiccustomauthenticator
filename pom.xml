@@ -53,29 +53,21 @@
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
             <version>1.15.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/grpc-netty-shaded-1.15.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
             <version>1.15.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/grpc-protobuf-1.15.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
             <version>1.15.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/grpc-stub-1.15.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-core</artifactId>
             <version>1.15.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/grpc-core-1.15.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>

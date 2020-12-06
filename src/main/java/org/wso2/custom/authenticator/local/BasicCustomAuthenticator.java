@@ -17,13 +17,11 @@
  */
 package org.wso2.custom.authenticator.local;
 
-
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.application.common.model.User;
-import org.wso2.custom.authenticator.local.grpc.UserOuterClass;
-import org.wso2.custom.authenticator.local.grpc.userGrpc;
+import org.wso2.custom.authenticator.local.grpc.Service;
+import org.wso2.custom.authenticator.local.grpc.serviceGrpc;
 import org.wso2.custom.authenticator.local.internal.BasicCustomAuthenticatorServiceComponent;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.LocalApplicationAuthenticator;
@@ -44,6 +42,7 @@ import java.io.IOException;
 
 import io.grpc.ManagedChannel;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
+
 /**
  * Username Password based custom Authenticator
  */
@@ -52,7 +51,6 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
     private static final long serialVersionUID = 4345354156955223654L;
     private static final Log log = LogFactory.getLog(BasicCustomAuthenticator.class);
     private String roleName;
-
 
     @Override
     protected void initiateAuthenticationRequest(HttpServletRequest request,
@@ -95,12 +93,14 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
         String username = request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME);
         boolean isAuthenticated = true;
         AuthenticatedUser authenticatedUser = AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier(username);
-        AuthUser authUser = new AuthUser(authenticatedUser);
         context.setSubject(authenticatedUser);
+
+        //new AuthUser object
+        AuthUser authUser = new AuthUser(authenticatedUser);
 
         boolean authorization = false;
 
-        if(isAuthenticated) {
+        if (isAuthenticated) {
             if ("oidc".equalsIgnoreCase(context.getRequestType())) {
                 // authorization only for openid connect requests
                 try {
@@ -134,6 +134,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     @Override
     protected boolean retryAuthenticationEnabled() {
+
         return true;
     }
 
@@ -145,6 +146,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     @Override
     public boolean canHandle(HttpServletRequest httpServletRequest) {
+
         String userName = httpServletRequest.getParameter(BasicCustomAuthenticatorConstants.USER_NAME);
         String password = httpServletRequest.getParameter(BasicCustomAuthenticatorConstants.PASSWORD);
         if (userName != null && password != null) {
@@ -155,6 +157,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     @Override
     public String getContextIdentifier(HttpServletRequest httpServletRequest) {
+
         return httpServletRequest.getParameter("sessionDataKey");
     }
 
@@ -166,12 +169,24 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator i
 
     public String getRoleName(AuthUser authUser) {
 
+        //Creating a channel
         ManagedChannel channel = NettyChannelBuilder.forAddress("localhost", 8010).usePlaintext().build();
-        userGrpc.userBlockingStub clientstub = userGrpc.newBlockingStub(channel);
-        UserOuterClass.User grpcUser = UserOuterClass.User.newBuilder().setUserName(authUser.getUserName())
+
+        //creating the gRPC Stub
+        serviceGrpc.serviceBlockingStub clientStub = serviceGrpc.newBlockingStub(channel);
+
+        //defining the request by setting up the attributes
+        Service.User grpcUser = Service.User.newBuilder()
+                .setAuthenticatedSubjectIdentifier(authUser.getAuthenticatedSubjectIdentifier())
+                .setFederatedIdPName(authUser.getFederatedIdPName())
+                .setIsFederatedUser(authUser.isFederatedUser())
+                .setUserName(authUser.getUserName())
                 .setUserStoreDomain(authUser.getUserStoreDomain())
                 .setTenantDomain(authUser.getTenantDomain()).build();
-        UserOuterClass.Response response = clientstub.getRoleName(grpcUser);
+
+        //called the remote server and obtain the response
+        Service.Response response = clientStub.getRoleName(grpcUser);
+
         System.out.println(response.getRole());
         return response.getRole();
     }

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-SymbolicName: org.wso2.custom.authenticator.local
 Built-By: nuwanga
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1606888725409
+Bnd-LastModified: 1607141506358
 Embed-Dependency: grpc-core|grpc-netty-shaded|grpc-protobuf|protobuf-j
  ava|grpc-stub|opencensus-api|grpc-protobuf-lite|opencensus-contrib-gr
  pc-metrics|grpc-context
@@ -11,11 +11,11 @@ Import-Package: com.google.common.base;version="[29.0,30)";resolution:
  ptional,com.google.common.io;version="[29.0,30)";resolution:=optional
  ,com.google.common.math;version="[29.0,30)";resolution:=optional,com.
  google.common.util.concurrent;version="[29.0,30)";resolution:=optiona
- l,com.google.gson.stream;resolution:=optional,com.google.protobuf.nan
- o;resolution:=optional,com.google.rpc;resolution:=optional,com.jcraft
- .jzlib;resolution:=optional,com.ning.compress;resolution:=optional,co
- m.ning.compress.lzf;resolution:=optional,com.ning.compress.lzf.util;r
- esolution:=optional,javax.annotation;version="[3.0,4)";resolution:=op
+ l,com.google.gson.stream;version="[2.7,3)";resolution:=optional,com.g
+ oogle.protobuf.nano;resolution:=optional,com.google.rpc;resolution:=o
+ ptional,com.jcraft.jzlib;resolution:=optional,com.ning.compress;resol
+ ution:=optional,com.ning.compress.lzf;resolution:=optional,com.ning.c
+ ompress.lzf.util;resolution:=optional,javax.annotation;resolution:=op
  tional,javax.crypto;resolution:=optional,javax.crypto.spec;resolution
  :=optional,javax.naming;resolution:=optional,javax.naming.directory;r
  esolution:=optional,javax.net.ssl;resolution:=optional,javax.security
@@ -62,16 +62,16 @@ DynamicImport-Package: *
 Tool: Bnd-1.43.0
 Export-Package: org.wso2.custom.authenticator.local.grpc;uses:="com.go
  ogle.common.util.concurrent";version="1.0.0",org.wso2.custom.authenti
- cator.local;uses:="org.wso2.carbon.identity.application.common.model,
- javax.servlet.http,org.wso2.carbon.identity.application.authenticatio
- n.framework.exception,org.wso2.carbon.identity.application.authentica
- tion.framework,org.wso2.carbon.utils.multitenancy,org.wso2.carbon.use
- r.core,org.wso2.carbon.user.core.tenant,org.wso2.carbon.identity.appl
- ication.authentication.framework.context,org.wso2.carbon.identity.app
- lication.authentication.framework.model,org.wso2.carbon.user.core.com
- mon,org.apache.commons.logging,org.wso2.carbon.identity.application.a
- uthentication.framework.util,org.wso2.carbon.identity.application.aut
- hentication.framework.config,org.wso2.carbon.user.api,org.wso2.custom
+ cator.local;uses:="org.wso2.carbon.identity.application.authenticatio
+ n.framework.model,org.wso2.carbon.identity.application.common.model,j
+ avax.servlet.http,org.wso2.carbon.identity.application.authentication
+ .framework.exception,org.wso2.carbon.identity.application.authenticat
+ ion.framework,org.wso2.carbon.utils.multitenancy,org.wso2.carbon.user
+ .core,org.wso2.carbon.user.core.tenant,org.wso2.carbon.identity.appli
+ cation.authentication.framework.context,org.apache.commons.logging,or
+ g.wso2.carbon.user.core.common,org.wso2.carbon.identity.application.a
+ uthentication.framework.util,org.wso2.carbon.user.api,org.wso2.carbon
+ .identity.application.authentication.framework.config,org.wso2.custom
  .authenticator.local.grpc,org.wso2.carbon.user.core.service";version=
  "1.0.0"
 Bundle-Version: 1.0.0

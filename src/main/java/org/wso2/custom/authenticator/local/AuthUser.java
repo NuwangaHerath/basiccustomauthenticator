@@ -4,31 +4,53 @@ import org.wso2.carbon.identity.application.authentication.framework.model.Authe
 
 public class AuthUser {
 
-    protected String authenticatedSubjectIdentifier = "";
-    protected String federatedIdPName;
-    protected boolean isFederatedUser;
-    protected String tenantDomain;
-    protected String userStoreDomain;
-    protected String userName;
+    private String authenticatedSubjectIdentifier = "test1";
+    private String federatedIdPName = "test_fIdP";
+    private boolean isFederatedUser = false;
+    private String tenantDomain;
+    private String userStoreDomain;
+    private String userName;
 
     public AuthUser(AuthenticatedUser user) {
-        this.authenticatedSubjectIdentifier = user.getAuthenticatedSubjectIdentifier();
-        this.federatedIdPName = user.getFederatedIdPName();
-        this.isFederatedUser = user.isFederatedUser();
+        if(user.getAuthenticatedSubjectIdentifier()==null){
+            authenticatedSubjectIdentifier = "test_AuthSubId";
+        }
+        if(user.getFederatedIdPName()==null){
+            federatedIdPName = "test_fIdP";
+        }
+
         this.tenantDomain = user.getTenantDomain();
         this.userStoreDomain = user.getUserStoreDomain();
         this.userName = user.getUserName();
     }
 
-    public String getAuthenticatedSubjectIdentifier(){ return authenticatedSubjectIdentifier; }
+    public String getAuthenticatedSubjectIdentifier() {
 
-    public String getFederatedIdPName(){ return federatedIdPName; }
+        return authenticatedSubjectIdentifier;
+    }
 
-    public boolean isFederatedUser(){ return isFederatedUser; }
+    public String getFederatedIdPName() {
 
-    public String getTenantDomain(){ return tenantDomain; }
+        return federatedIdPName;
+    }
 
-    public String getUserStoreDomain(){ return userStoreDomain; }
+    public boolean isFederatedUser() {
 
-    public String getUserName(){ return authenticatedSubjectIdentifier; }
+        return isFederatedUser;
+    }
+
+    public String getTenantDomain() {
+
+        return tenantDomain;
+    }
+
+    public String getUserStoreDomain() {
+
+        return userStoreDomain;
+    }
+
+    public String getUserName() {
+
+        return userName;
+    }
 }
